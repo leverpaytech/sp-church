@@ -1,13 +1,7 @@
 document.getElementById("donateForm").addEventListener("submit", function (e) {
     e.preventDefault();
   
-    var amount = document.getElementById('amount').value.trim(); // Fetch amount from input field
-  
-    // Validate amount (ensure it's a valid number, etc.)
-    if (!isValidAmount(amount)) {
-      alert("Please enter a valid donation amount.");
-      return;
-    }
+    var amount = document.querySelector('input[name="btnradio"]:checked').value;
   
     // Function to generate a random number
     function generateRandomNumber() {
@@ -15,7 +9,7 @@ document.getElementById("donateForm").addEventListener("submit", function (e) {
     }
   
     var data = {
-      amount: parseFloat(amount), // Convert amount to a number if needed
+      amount: amount, //10
       merchant_reference: "SCD-" + generateRandomNumber(), // Generate random number for reference
       product: "Donation",
     };
@@ -26,7 +20,7 @@ document.getElementById("donateForm").addEventListener("submit", function (e) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + "7hovquqjgmt88kw15jmlhovdcaphilhincljhplr", // Use the live_secret_key
+          Authorization: "Bearer " + "7hovquqjgmt88kw15jmlhovdcaphilhincljhplr", //Used the live_secret_key
         },
         body: JSON.stringify(data),
       }
@@ -46,8 +40,4 @@ document.getElementById("donateForm").addEventListener("submit", function (e) {
         console.error("Error:", error);
       });
   });
-  
-  function isValidAmount(amount) {
-    return /^\d+(\.\d{1,2})?$/.test(amount); // Validate amount as a positive number with up to 2 decimal places
-  }
   

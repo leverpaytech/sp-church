@@ -14,6 +14,22 @@
     z-index: 99;
 }
 
+.form-check-input {
+    margin-top: 0.3rem;
+}
+
+.form-check-label {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #ee8742; /* Border color */
+}
+
+.form-check-label:hover {
+    background-color: #f8f9fa; /* Hover background color */
+}
+
 
 /*** Spinner ***/
 #spinner {
