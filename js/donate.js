@@ -1,7 +1,15 @@
 document.getElementById("donateForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  var amount = document.querySelector('input[name="btnradio"]:checked').value;
+  //var amount = document.querySelector('input[name="btnradio"]:checked').value;
+
+  var amount = document.getElementById('amount').value.trim(); // Fetch amount from input field
+
+   // Validate amount (ensure it's a valid number, etc.)
+   if (!isValidAmount(amount)) {
+    alert("Please enter a valid donation amount.");
+    return;
+  }
 
   // Function to generate a random number
   function generateRandomNumber() {
@@ -40,3 +48,8 @@ document.getElementById("donateForm").addEventListener("submit", function (e) {
       console.error("Error:", error);
     });
 });
+
+function isValidAmount(amount) {
+  // Validate amount as a positive number with up to 2 decimal places and at least 100
+  return /^\d+(\.\d{1,2})?$/.test(amount) && parseFloat(amount) >= 100;
+}
