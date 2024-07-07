@@ -26,6 +26,15 @@
     border: 1px solid #ee8742; /* Border color */
 }
 
+.clear-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d; /* Adjust color as needed */
+}
+
 .form-check-label:hover {
     background-color: #f8f9fa; /* Hover background color */
 }

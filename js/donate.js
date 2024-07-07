@@ -3,13 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const radioButtons = document.querySelectorAll('input[type="radio"][name="btnradio"]');
   const donateButton = document.querySelector('#donateForm button[type="submit"]');
 
-  // Disable text field when radio button is selected
-  radioButtons.forEach(radio => {
-    radio.addEventListener('change', function() {
-      customAmount.disabled = this.checked;
-    });
-  });
-
   // Disable radio buttons when text field has input
   customAmount.addEventListener('input', function() {
     radioButtons.forEach(radio => {
@@ -93,4 +86,42 @@ document.addEventListener("DOMContentLoaded", function() {
     // Validate amount as a positive number with up to 2 decimal places and at least 1
     return /^\d+(\.\d{1,2})?$/.test(amount) && parseFloat(amount) >= 1;
   }
+});
+
+document.getElementById('clearCustomAmount').addEventListener('click', function() {
+  document.getElementById('customAmount').value = '';
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Clear input field function
+    document.getElementById('clearCustomAmount').addEventListener('click', function() {
+        document.getElementById('customAmount').value = '';
+    });
+
+    // Radio button click event
+    var radioButtons = document.querySelectorAll('input[name="btnradio"]');
+    radioButtons.forEach(function(radio) {
+        radio.addEventListener('click', function() {
+            // Get selected radio button value
+            var selectedValue = this.value;
+            
+            // Update input field with selected value (only if it's a number)
+            if (!isNaN(selectedValue)) {
+                document.getElementById('customAmount').value = selectedValue;
+            }
+        });
+    });
+
+    // Ensure input field only accepts numbers
+    document.getElementById('customAmount').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, ''); // Replace non-numeric characters with empty string
+    });
+});
+
+// Ensure input field allows only numbers and allows editing
+document.getElementById('customAmount').addEventListener('input', function() {
+  var currentValue = this.value;
+  var newValue = currentValue.replace(/\D/g, ''); // Replace non-numeric characters
+  this.value = newValue; // Update input value
 });
